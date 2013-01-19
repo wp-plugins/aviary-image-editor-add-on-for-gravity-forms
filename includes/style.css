@@ -1,0 +1,25 @@
+#ajax_waiting_message_div{
+ display:none;
+ font-size: 20px;
+ padding: 5px 130px 10px 30px;
+ position: absolute;
+ border: solid 2px #C1C1C1;
+ z-index: 9999;
+ background-color: white;
+ margin: -30px 0px 0px 0px;
+}
+#ajax_waiting_message_div label{
+ padding-left:10px;
+ display: inline;
+}
+iframe#file_upload_target{
+ display:none;
+ width: 0px;
+ height: 0px;   
+}
+#btn_gf_aa_edit{
+  display: none;
+}
+#gf_file_upload_error{
+  color: red;
+}
