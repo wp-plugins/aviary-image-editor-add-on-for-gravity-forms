@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-if($_POST['commit']=='save'){
+if($_POST['commit']=='save settings'){
     update_option('gf_aa_options', $_POST['gf_aa_options']);
 }
 $options = get_option('gf_aa_options');
