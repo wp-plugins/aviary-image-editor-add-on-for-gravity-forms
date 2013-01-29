@@ -43,12 +43,16 @@ Get screenshots and support at <a href="http://netherworks.com/gform-aviary-addo
 This plugin is released under a GPL license.
 
 == Changelog ==
+- 1.1.1 =
+* Fixed jQuery CDN Url
 - 1.1 = 
 * Fixed issue with saving plugin options.
 = 1.0 =
 * Launch!
 
 == Upgrade Notice ==
+- 1.1.1 =
+* Minor Bug Fixes. Fixed jQuery CDN Url
 - 1.1 = 
 * Fixed issue with saving plugin options.
 = 1.0 =

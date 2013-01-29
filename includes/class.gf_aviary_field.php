@@ -140,11 +140,11 @@ class GFAviaryField {
               $url = plugins_url( 'gform-aviary.js' , __FILE__ );
               if(!$field['aa_preview_width'] || $field['aa_preview_width']<50 || $field['aa_preview_width']>500)$field['aa_preview_width']=$this->_settings['preview_width'];
               if(!$field['aa_preview_height'] || $field['aa_preview_height']<50 || $field['aa_preview_height']>500)$field['aa_preview_height']=$this->_settings['preview_height'];
-              $gf_aa_options = get_option('gf_aa_options');
+              $gf_aa_options = get_option('gf_aa_options');   
               ?>
               <link rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__) ?>style.css" type="text/css">
-              <script type='text/javascript' src='//code.jquery.com/jquery.min.js'></script>
-              <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+              <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+              <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>			  
               <script type='text/javascript' src='<?php echo $url;?>'></script>
               <script type="text/javascript">
                 var gf_aa_settings = new Array();
