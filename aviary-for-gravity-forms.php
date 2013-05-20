@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Aviary Editor Addon For Gravity Forms Deluxe
+Plugin Name: Aviary Editor Addon For Gravity Forms
 Plugin URI: http://netherworks.com/gform-aviary-addon
-Description: A premium plugin that integrates the awesome Aviary Photo / Image Editor with the Gravity Forms Plugin. 
-Version: 1.0
+Description: A free plugin that integrates the awesome Aviary Photo / Image Editor with the Gravity Forms Plugin. 
+Version: 2.0
 Author: Leon Kiley - NetherWorks, LLC
 Author URI: http://netherworks.com
 */
@@ -50,28 +50,4 @@ add_action('init', 'gf_aviary_editor');
 function gf_aviary_editor(){
   new GFAviaryEditor();
 }
-?>
-<?php
-/* Display a notice that can be dismissed 
-add_action('admin_notices', 'settings_admin_notice');
-function settings_admin_notice() {
-	global $current_user ;
-        $user_id = $current_user->ID;
-        // Check that the user hasn't already clicked to ignore the message 
-	if ( ! get_user_meta($user_id, 'settings_ignore_notice') ) {
-        echo '<div class="updated"><p>';
-        printf(__('<b>Aviary Editor Addon For Gravity Forms: </b> Please make sure your <a href="admin.php?page=gf_aviary_options">plugin settings</a> are complete so that the plugin functions as expected. | <a href="%1$s">Hide Notice</a>'), '?settings_nag_ignore=0');
-        echo "</p></div>";
-	}
-}
-add_action('admin_init', 'settings_nag_ignore');
-function settings_nag_ignore() {
-	global $current_user;
-        $user_id = $current_user->ID;
-        // If user clicks to ignore the notice, add that to their user meta 
-        if ( isset($_GET['settings_nag_ignore']) && '0' == $_GET['settings_nag_ignore'] ) {
-             add_user_meta($user_id, 'settings_ignore_notice', 'true', true);
-	}
-}
-*/
 ?>
