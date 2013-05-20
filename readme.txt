@@ -10,7 +10,7 @@ A plugin that integrates the awesome Aviary Photo / Image Editor with the Gravit
 
 == Description ==
 
-### Allow your users to upload and edit photos before submitting them in your Gravity Forms.
+### Allow your users to upload and edit photos before submitting them in your Gravity Forms. <strong>Now get photos from facebook and instagram too!</strong>
 
 #### Using the Aviary Editor API
 Before you can start using this great plugin, you'll need to get a developer api key from <a href="http://http://www.aviary.com/web-key" target="_blank">Get your api key here for <strong>free!</strong></a>. 
@@ -34,7 +34,7 @@ Get screenshots and support at <a href="http://netherworks.com/gform-aviary-addo
 == Usage ==
 1. Click the "Aviary Editor" button in the Gravity Forms: Form Editor. 
 1. Set a name for it in the "Properties" tab.
-1. Find additional options on the "Advanced" tab.
+1. Find and update additional options on Dashboard > Forms > Aviary Options.
 1. Save your changes.
 
 == Frequently Asked Questions ==
@@ -43,17 +43,25 @@ Get screenshots and support at <a href="http://netherworks.com/gform-aviary-addo
 This plugin is released under a GPL license.
 
 == Changelog ==
-- 1.1.1 =
+
+= 2.0 =
+* Premium version now free and has replaced basic free version.
+* Added tons of features, including photos from facebook and instagram.
+* Fixed lots of bugs and compatibility issues.
+* Now also works with conditional logic.
+= 1.1.1 =
 * Fixed jQuery CDN Url
-- 1.1 = 
+= 1.1 = 
 * Fixed issue with saving plugin options.
 = 1.0 =
 * Launch!
 
 == Upgrade Notice ==
-- 1.1.1 =
+= 2.0 =
+* This is a major release. Please upgrade as soon as possible to get the most out of this great plugin! Premium features, like getting photos from facebook and instagram, are now included for free!
+= 1.1.1 =
 * Minor Bug Fixes. Fixed jQuery CDN Url
-- 1.1 = 
+= 1.1 = 
 * Fixed issue with saving plugin options.
 = 1.0 =
 * Launch!

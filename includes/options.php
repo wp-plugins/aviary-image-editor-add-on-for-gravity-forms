@@ -1,27 +1,23 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-if($_POST['commit']=='save settings'){
+﻿<?php
+if($_POST['commit']=='save'){
     update_option('gf_aa_options', $_POST['gf_aa_options']);
 }
 $options = get_option('gf_aa_options');
+
 ?>
 <h2><?php _e('Aviary Settings');?></h2>
 <div>
-    <p><?php _e('please select your country. This is needed for correct displaying google map.');?></p>
+    
     <form action="" method="POST">
         <div style="width: 50%;">
             <table class="form-table">
                 <tbody>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Avairy API Key');?></th>
+                        <th scope="row"><?php _e('Avairy API Key', 'gravityforms');?></th>
                         <td><input type="text" name="gf_aa_options[api_key]" value="<?php echo $options['api_key'];?>" size="40"> (To get your api key simply <a href="http://www.aviary.com/web-key" target="_blank">register here</a> for free)</td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Editor Language');?></th>
+                        <th scope="row"><?php _e('Editor Language', 'gravityforms');?></th>
                         <td>
                           <?php
                             $items = array(
@@ -57,7 +53,7 @@ $options = get_option('gf_aa_options');
                         </td>
                     </tr>
                      <tr valign="top">
-                        <th scope="row"><?php _e('Saved File Format');?></th>
+                        <th scope="row"><?php _e('Saved File Format', 'gravityforms');?></th>
                         <td>
                           <?php
                             $items = array(
@@ -76,107 +72,49 @@ $options = get_option('gf_aa_options');
                         </td>                        
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Supported File Format');?></th>
+                        <th scope="row"><?php _e('Supported File Format', 'gravityforms');?></th>
                         <td><input type="text" name="gf_aa_options[supported_file_format]" value="<?php echo $options['supported_file_format'];?>" size="40"> (Separated with comma. ie: jpg,png,gif)</td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Disable Preview', 'gravityforms');?></th>
+                        <td><input type="checkbox" name="gf_aa_options[preview_disable]" value="1" <?php if($options['preview_disable'])echo "checked";?>> (Please check if you do not want to display preview in form.)</td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Preview Width', 'gravityforms');?></th>
+                        <td><input type="text" name="gf_aa_options[preview_width]" value="<?php echo $options['preview_width'];?>" > px</td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Preview Height', 'gravityforms');?></th>
+                        <td><input type="text" name="gf_aa_options[preview_height]" value="<?php echo $options['preview_height'];?>" > px</td>
+                    </tr>
+                    <tr valign="top"><td colspan="2"></td></tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Face Facebook Application ID');?></th>
+                        <td><input type="text" name="gf_aa_options[fb_app_id]" value="<?php echo $options['fb_app_id'];?>" size="40"></td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Facebook Application Secret');?></th>
+                        <td><input type="text" name="gf_aa_options[fb_app_secret]" value="<?php echo $options['fb_app_secret'];?>" size="40"></td>
+                    </tr>
+                    <tr valign="top"><td colspan="2"></td></tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Instagram Client ID');?></th>
+                        <td><input type="text" name="gf_aa_options[ins_client_id]" value="<?php echo $options['ins_client_id'];?>" size="40"></td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Instagram Client Secret');?></th>
+                        <td><input type="text" name="gf_aa_options[ins_client_secret]" value="<?php echo $options['ins_client_secret'];?>" size="40"></td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Instagram REDIRECT URI');?></th>
+                        <td><input type="text" name="gf_aa_options[ins_redirect_uri]" value="<?php echo $options['ins_redirect_uri'];?>" size="40"></td>
                     </tr>
                 </tbody>
             </table>
-            <input type="submit" style="margin-top: 50px;float:right;" class="button-primary" name="commit" value="save settings" />
+            <input type="submit" style="margin-top: 50px;float:right;" class="button-primary" name="commit" value="save" />
         </div>
         </form>
 </div>
-
-
-<?php
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div style="clear: both;">
 <h3>This plugin is proudly presented to you by:</h3>
@@ -198,4 +136,3 @@ $options = get_option('gf_aa_options');
 	<a href="http://netherworks.com/gravityforms" title="Gravity Forms Plugin for WordPress" target="_blank"><img src="http://gravityforms.s3.amazonaws.com/banners/140x140.gif" alt="Gravity Forms Contact Form Plugin for WordPress" width="140" height="140" style="border:none;" /></a>
 	</div>
 </div>
-

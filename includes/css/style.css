@@ -1,0 +1,221 @@
+﻿#gf_aa_img_preview {
+	margin-left: -10px;
+}
+
+#gf_aa_editor {
+	min-width: 250px!important;
+	padding: 20px;
+	/* border-radius: 10px; */
+}
+
+#local-upload  {
+	  background: url('../imgs/upload.png') left top no-repeat;
+	  padding-left: 35px;
+	  height: 50px;
+}
+
+#facebook-upload  {
+	  background: url('../imgs/facebook-icon.png') left top no-repeat;
+	  padding-left: 35px;
+	  height: 50px;
+}
+
+#instagram-upload  {
+	  background: url('../imgs/instagram-icon.png') left top no-repeat;
+	  padding-left: 35px;
+	  height: 50px;
+}
+
+#ajax_waiting_message_div{
+ display:none;
+ font-size: 20px;
+ padding: 5px 130px 10px 30px;
+ position: absolute;
+ border: solid 2px #C1C1C1;
+ z-index: 9999;
+ background-color: white;
+ margin: -30px 0px 0px 0px;
+}
+#ajax_waiting_message_div label{
+ padding-left:10px;
+ display: inline;
+}
+iframe#gf_aa_target_iframe{
+ display:none;
+ width: 0px;
+ height: 0px;   
+}
+#btn_gf_aa_edit{
+  display: none;
+}
+#gf_file_upload_error{
+  color: red;
+}
+
+.gform_aviary .tabs li {
+  list-style:none;
+  display:inline;
+  margin: 0 0 0 1px;
+  padding: 0;
+
+}
+.gform_aviary .tabs li:before {
+  content: none;
+}
+
+.gform_aviary .tabs a {
+  padding:5px 5px;
+  display:inline-block;
+  background: rgb(116, 116, 116);
+  color:#fff;
+  text-decoration:none;
+}
+.gform_aviary div.tab_content{
+  margin:0;
+  padding: 10px;
+}
+#aa_preview_container{
+  padding: 0 0 0 10px;
+  margin:0;
+}
+#btn_gf_aa_edit{
+  margin: 10px 0;
+  padding: 0 0 0 10px;
+}
+.gform_aviary .tabs a.active {
+  background:#fff;
+  color:#000;
+}
+#gf_aa_editor{
+  /* border: solid 1px rgb(207, 202, 202); */
+  min-width: 330px;
+}
+.gform_aviary ul.tabs{
+  margin-left: 15px;
+  margin-top: 0;
+  margin-right: 15px;
+  margin-bottom: 0;
+  padding: 0;
+}
+#facebook-open {
+  cursor: pointer;
+  /* background: url('../imgs/facebook-connect-btn.gif'); */
+  background: url('../imgs/fb-button.png') left top no-repeat;
+  width: 226px;
+  height: 50px;
+  display: block;
+  /* background-position: top; */
+}
+#facebook-open:hover{
+  /* background-position: bottom; */
+}
+#instagram-open {
+  cursor: pointer;
+  /* background: url('../imgs/sign-in-with-instagram.png'); */
+  background: url('../imgs/ig-button.png') left top no-repeat;
+  width: 226px;
+  height: 50px;
+  display: block;
+}
+
+#fb_img_container, #ig_img_container{
+  width: 800px;
+  height: 650px;
+  padding: 10px 30px;
+  margin: 0;
+}
+#fb_img_container .header, #ig_img_container .header{
+  width: 100%;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #ddd;
+}
+#fb_img_container .box, #ig_img_container .box{
+  width: 100%;
+  margin: 20px 0 0 0;
+  padding: 0;
+  height: 550px;
+  border: solid 1px #ddd;
+  overflow-y: auto;
+}
+#fb_img_container .profile_thumb, #ig_img_container .profile_thumb{
+  margin: 0;
+  padding: 5px;
+  float: left;
+}
+#ig_img_container .profile_thumb img{
+  height: 50px;
+}
+#fb_img_container .fb_friends, #ig_img_container .ig_user_name{
+  margin: 0;
+  padding: 1.3em 0 0 0;
+  float: left;
+}
+#fb_img_container .album.item{
+  margin: 20px;
+  padding: 0;
+  height: 150px;
+  width: 150px;
+  cursor: pointer;
+  float: left;
+}
+#fb_img_container .photo.item, #ig_img_container .photo.item{
+  margin: 10px 0 0 15px;
+  cursor: pointer;
+  float: left;
+  border: solid 1px #ddd;
+  padding: 2px;
+}
+#fb_img_container .photo.item img, #ig_img_container .photo.item img{
+  width: 133px;
+  height: 100px;
+}
+#fb_img_container .cover_image{
+  border: solid 1px #ddd;
+  padding: 1px;
+  margin: 0;
+  height: 100px;
+  width: 150px;
+  overflow: hidden;
+}
+#fb_img_container .cover_image img{
+  width: 150px;
+  /* height: 90px; */
+}
+#fb_img_container .title{
+	color: #AAA;
+    font-family: 'Droid Sans';
+    font-size: 12px;
+    padding: 3px;
+    text-align: center;
+}
+#fb_img_container .right_menu, #ig_img_container .right_menu{
+  float: right;
+  margin-top: 10px;
+  padding: 0;
+  cursor: pointer;
+  color: rgb(180, 104, 100);
+}
+#fb_img_container .gf_fb_logout{
+  float: left;
+  margin: 10px;
+  cursor: pointer;
+}
+#fb_img_container .go_to_album{
+  float: left;
+  margin: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+#fb_img_container .gf_fb_logout, #fb_img_container .go_to_album {
+	color: #FFF;
+	font-weight: bold;
+    font-family: 'Droid Sans';
+    font-size: 14px;
+    padding: 5px;
+	border: 1px solid #DDD;
+	background-color: #5590BD;
+	border-radius: 10px;
+}

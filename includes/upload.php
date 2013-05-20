@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 include_once ($_SERVER["DOCUMENT_ROOT"]."/wp-load.php");
-include_once($_SERVER["DOCUMENT_ROOT"]."/wp-admin/admin.php");
+
 $image_file = $_FILES['gf_aa_file'];
 if($image_file['name']!=''){
      $max_file_size =  4*1024*1024;
@@ -9,9 +9,10 @@ if($image_file['name']!=''){
          $msg = "File Size is too big.";
          $error_flag = true;
      }
-     $extension = end(explode('.', $image_file['name']));
+     $extension = strtolower(end(explode('.', $image_file['name'])));
      $aa_options = get_option('gf_aa_options');
      $supported_files = $aa_options['supported_file_format'];
+     $supported_files = strtolower($supported_files);
      if(!$error_flag && $supported_files != '' ){
        $supported_files = explode (',', $supported_files);
        if(!in_array($extension, $supported_files)){
@@ -32,19 +33,23 @@ if($image_file['name']!=''){
  }
 ?>
 <script language="javascript">
- parent.document.getElementById('ajax_waiting_message_div').style.display='none';
+ parent.jQuery('#ajax_waiting_message_div').hide();
+ var gf_aa_settings_height = parent.gf_aa_settings['preview_height'];
+ var gf_aa_settings_width = parent.gf_aa_settings['preview_width'];
+ if(gf_aa_settings_height !== '') { gf_aa_settings_height = ' height="' + parent.gf_aa_settings['preview_height'] + '"'; }
+ if(gf_aa_settings_width !== '') { gf_aa_settings_width = ' width="' + parent.gf_aa_settings['preview_width'] + '"'; }
 <?php
 if( $error_flag ){
-  echo "parent.document.getElementById('gf_file_upload_error').style.display='block';";
-  echo "parent.document.getElementById('btn_gf_aa_edit').style.display='none';";
-  echo "parent.document.getElementById('gf_file_upload_error').innerText='".$msg."';";
+  echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #gf_file_upload_error').show();";
+  echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #btn_gf_aa_edit').hide();";
+  echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #gf_file_upload_error').html('".$msg."');";
 }else{
-    $input_field = explode('_', $_POST['gf_aa_field_id']);
-    echo "parent.document.getElementById('gf_file_upload_error').style.display='none';";
-    echo "parent.document.getElementById('btn_gf_aa_edit').style.display='block';";
-    echo "parent.document.getElementById('aa_preview_container').innerHTML='<img id=\"gf_aa_img_preview\" width=\"'+parent.gf_aa_settings['preview_width']+'\" height=\"'+parent.gf_aa_settings['preview_height']+'\" id=\"aa_preview_image\" src=\"".$file_url."\">';";
-    echo "parent.document.getElementById('".$input_field[1]."').value='".$file_url."';";
+    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #gf_file_upload_error').hide();";
+    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #btn_gf_aa_edit').show();";
+    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #aa_preview_container').html('<img id=\"gf_aa_img_preview\" '+ gf_aa_settings_width + gf_aa_settings_height + ' id=\"aa_preview_image\" src=\"".$file_url."\">');";
+    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #input_".$_POST['gf_aa_field_id']."').val('".$file_url."');";
     echo "parent.launchEditor();";
+    echo "parent.jQuery('.gform_button').removeAttr('disabled');";
 }
 ?>
 </script>
