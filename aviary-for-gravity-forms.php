@@ -3,12 +3,12 @@
 Plugin Name: Aviary Editor Addon For Gravity Forms
 Plugin URI: http://netherworks.com/gform-aviary-addon
 Description: A free plugin that integrates the awesome Aviary Photo / Image Editor with the Gravity Forms Plugin. 
-Version: 2.0
+Version: 2.1
 Author: Leon Kiley - NetherWorks, LLC
 Author URI: http://netherworks.com
 */
 /*
-    *  Copyright (C) 2011-2013  Leon Kiley
+    *  Copyright (C) 2011-2014  Leon Kiley
     *  http://watersedgeweb.com
     *  support@watersedgeweb.com
 
