@@ -1,7 +1,7 @@
 === Aviary Image Editor Add-on For Gravity Forms ===
 Tags: gravity forms, forms, gravity, form, editor, gravity form, photos, photo editor plugin, photo upload form, photo editor form, wp contact form, aviary editor, aviary
 Requires at least: 2.8
-Tested up to: 3.5
+Tested up to: 4.0
 Stable tag: trunk
 Contributors: Water's Edge Web Design, NetherWorks LLC
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q2P8VVQ2U54DY
