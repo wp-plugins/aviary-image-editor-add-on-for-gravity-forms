@@ -9,7 +9,7 @@ jQuery(document).ready(function(){
   
   gf_featherEditor = new Aviary.Feather({
     apiKey: gf_aa_settings['api_key'],
-    apiVersion: 2,
+    apiVersion: 3,
     tools: 'all',
     appendTo: '',
     fileFormat: gf_aa_settings['file_format']!=''? gf_aa_settings['file_format'] : 'original',
@@ -24,7 +24,7 @@ jQuery(document).ready(function(){
           alert(errorObj.message);
     }
 });
-  
+
 });
 function draw_aa_editor(){
   var aa_editor = jQuery('<div id="gf_aa_editor"></div>');
@@ -51,5 +51,4 @@ function launchEditor() {
     });
     return false;
 }
-
 

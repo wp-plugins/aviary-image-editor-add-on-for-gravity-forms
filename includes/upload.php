@@ -1,4 +1,4 @@
-﻿<?php
+<?php 
 include_once ($_SERVER["DOCUMENT_ROOT"]."/wp-load.php");
 
 $image_file = $_FILES['gf_aa_file'];
@@ -51,7 +51,9 @@ if( $error_flag ){
     echo "parent.launchEditor();";
     echo "parent.jQuery('.gform_button').removeAttr('disabled');";
 }
+
 ?>
+
 </script>
 <?php
 exit;

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if($_POST['commit']=='save'){
     update_option('gf_aa_options', $_POST['gf_aa_options']);
 }
@@ -89,7 +89,7 @@ $options = get_option('gf_aa_options');
                     </tr>
                     <tr valign="top"><td colspan="2"></td></tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Face Facebook Application ID');?></th>
+                        <th scope="row"><?php _e('Facebook Application ID');?></th>
                         <td><input type="text" name="gf_aa_options[fb_app_id]" value="<?php echo $options['fb_app_id'];?>" size="40"></td>
                     </tr>
                     <tr valign="top">

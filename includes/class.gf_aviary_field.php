@@ -129,7 +129,8 @@ class GFAviaryField {
                 gf_aa_settings['preview_disable'] = '".$this->_gf_aa_options['preview_disable']."';
                 gf_aa_settings['preview_width'] = '".$this->_gf_aa_options['preview_width']."';
                 gf_aa_settings['preview_height'] = '".$this->_gf_aa_options['preview_height']."';
-              </script>";
+				
+			</script>";
               break;
             }
         }
@@ -179,6 +180,7 @@ class GFAviaryField {
           gf_aa_ajax_url = '<?php echo admin_url("admin-ajax.php");?>';
           gf_aa_auth_data = '<?php echo json_encode($this->_ig_obj->getOAuthToken($_GET['code']));?>';
           gf_aa_set_sesion_url = '<?php echo plugin_dir_url(__FILE__); ?>'
+		  
         </script>
         <?php
       }

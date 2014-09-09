@@ -44,6 +44,10 @@ This plugin is released under a GPL license.
 
 == Changelog ==
 
+= 2.1 =
+* Facebook & Instagram Album buttons do not render unless their api keys are added.
+* Updated to Aviary API V3
+* Fixed several problems that occasionally broke the plugin.
 = 2.0 =
 * Premium version now free and has replaced basic free version.
 * Added tons of features, including photos from facebook and instagram.
@@ -57,6 +61,8 @@ This plugin is released under a GPL license.
 * Launch!
 
 == Upgrade Notice ==
+= 2.1 =
+* This update addresses several issues that prevented the plugin from working on some sites. Keep an eye out for more changes to come.
 = 2.0 =
 * This is a major release. Please upgrade as soon as possible to get the most out of this great plugin! Premium features, like getting photos from facebook and instagram, are now included for free!
 = 1.1.1 =

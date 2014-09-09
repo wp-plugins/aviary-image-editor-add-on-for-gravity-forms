@@ -12,7 +12,7 @@ jQuery(document).ready(function(){
   }
   if(gf_aa_settings){
     draw_aa_editor();
-    jQuery('#gf_aa_file').live('change',function(){
+    jQuery('#gf_aa_file').on('change',function(){
       jQuery('#ajax_waiting_message_div').show();
       var form_id = gf_aa_settings['id'].split('_');
       gf_submit_btn_id = jQuery('#gform_'+form_id[0]+' :submit').attr('id');
@@ -56,7 +56,7 @@ jQuery(document).ready(function(){
 */
     gf_featherEditor = new Aviary.Feather({
       apiKey: gf_aa_settings['api_key'],
-      apiVersion: 2,
+      apiVersion: 3,
       tools: 'all',
       appendTo: '',
       fileFormat: gf_aa_settings['file_format']!=''? gf_aa_settings['file_format'] : 'original',
@@ -109,8 +109,12 @@ function draw_aa_editor(){
   
   // aa_editor.append(tab);
   aa_editor.append(local_editor);
+  if(gf_aa_settings['fb_app_id']){
   aa_editor.append(facebook_editor);
+  }
+  if(gf_aa_settings['ins_client_secret']){
   aa_editor.append(instagram_editor);
+  }
   aa_editor.append("<div id='aa_preview_container'></div><div id='btn_gf_aa_edit'><input type='image' onclick='launchEditor();return false;' src='"+gf_aa_settings['plugin_url']+"/imgs/edit-photo.png' value='Edit photo'/></div>");
   aa_editor.append('<div style="display:none;" id="gf_aa_images"></div>');
   if(!jQuery('#gf_aa_editor').size()){
@@ -288,3 +292,9 @@ function gf_ig_logout(){
       }						
   });
 }
+
+jQuery(window).on('load',function(){
+	if(!gf_aa_settings['fb_app_id']){
+	jQuery('#facebook-upload').hide();
+	}
+});
