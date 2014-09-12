@@ -53,17 +53,7 @@ jQuery(document).ready(function(){
   
 });
 function draw_aa_editor(){
-/* Original Version
-  var aa_editor = jQuery('<div id="gf_aa_editor"></div>');
-  var tab = jQuery('<ul class="tabs"><li><a id="local-upload" href="#tab_from_local">Upload</a></li><li><a id="facebook-upload" href="#tab_from_facebook">Facebook</a></li><li><a id="instagram-upload" href="#tab_from_instagram">Instagram</a></li></ul>'); 
-  var local_editor = jQuery('<div class="tab_content" id="tab_from_local"></div>');
-  local_editor.append('<form action="'+gf_aa_settings['plugin_url']+'upload.php" target="gf_aa_target_iframe" enctype="multipart/form-data" method="post"></form><iframe id="gf_aa_target_iframe" name="gf_aa_target_iframe"></iframe>');
-  local_editor.find('form').append('<input type="file" name="gf_aa_file" id="gf_aa_file"><input type="hidden" name="gf_aa_field_id" value="'+gf_aa_settings['id']+'">');
-  local_editor.find('form').append('<div id="ajax_waiting_message_div"><img src="'+gf_aa_settings['plugin_url']+'/imgs/loading.gif"><label id="ajax_waiting_message">Wait a second...</label></div>');
-  local_editor.find('form').before('<div id="gf_file_upload_error"></div>');
-  var facebook_editor = jQuery('<div class="tab_content" id="tab_from_facebook"><div id="facebook-open" onclick="gf_facebook_login();"></div></div>');
-  var instagram_editor = jQuery('<div class="tab_content" id="tab_from_instagram"><div onclick="gf_instagram_login();" id="instagram-open"></div></div>');
-*/
+
   var aa_editor = jQuery('<div id="gf_aa_editor"></div>');
   var local_editor = jQuery('<div id="local-upload"><div id="tab_from_local"></div>');
   local_editor.append('<form action="'+gf_aa_settings['plugin_url']+'upload.php" target="gf_aa_target_iframe" enctype="multipart/form-data" method="post"></form><iframe id="gf_aa_target_iframe" name="gf_aa_target_iframe"></iframe>');
@@ -259,8 +249,3 @@ function gf_ig_logout(){
   });
 }
 
-jQuery(window).on('load',function(){
-	if(!gf_aa_settings['fb_app_id']){
-	jQuery('#facebook-upload').hide();
-	}
-});
