@@ -5,8 +5,9 @@ var gf_aa_fb_access_token;
 var gf_aa_ajax_url;
 var gf_aa_auth_data;
 var gf_submit_btn_id;
+
 jQuery(document).ready(function(){
-  if(gf_aa_auth_data && gf_aa_auth_data!=''){
+  if(gf_aa_auth_data && gf_aa_auth_data!==''){
     set_ig_auth_data();
     return;
   }
@@ -19,58 +20,23 @@ jQuery(document).ready(function(){
       jQuery('#gform_'+form_id[0]+' :submit').attr('id','');
       jQuery('#gf_aa_editor #local-upload form').submit();      
     });
-/*
-    jQuery('.gform_aviary ul.tabs').each(function(){
-       For each set of tabs, we want to keep track of
-       which tab is active and it's associated content
-      var $active, $content, $links = $(this).find('a');
 
-      // If the location.hash matches one of the links, use that as the active tab.
-      // If no match is found, use the first link as the initial active tab.
-      $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
-      $active.addClass('active');
-      $content = $($active.attr('href'));
-       Hide the remaining content
-      $links.not($active).each(function () {
-        jQuery(jQuery(this).attr('href')).hide();
-      });
-	
-      // Bind the click event handler
-      jQuery(this).find('li a').live('click', function(e){
-        // Make the old tab inactive.
-        $active.removeClass('active');
-        $content.hide();
-
-        // Update the variables with the new link and content
-        $active = $(this);
-        $content = $($(this).attr('href'));
-
-        // Make the tab active.
-        $active.addClass('active');
-        $content.show();
-
-        // Prevent the anchor's default click action
-        e.preventDefault();
-      });
-    });
-*/
     gf_featherEditor = new Aviary.Feather({
       apiKey: gf_aa_settings['api_key'],
       apiVersion: 3,
       tools: 'all',
       appendTo: '',
-      fileFormat: gf_aa_settings['file_format']!=''? gf_aa_settings['file_format'] : 'original',
-      language: gf_aa_settings['language']!=''? gf_aa_settings['language'] : 'en',
-      onSave: function(imageID, newURL) {
-          var img = document.getElementById(imageID);
-          var data = "action=aa_ig_ajax&view=save_img&url="+newURL
+      fileFormat: gf_aa_settings['file_format']!==''? gf_aa_settings['file_format'] : 'original',
+      language: gf_aa_settings['language']!==''? gf_aa_settings['language'] : 'en',
+      onSave: function(imageID, newURL){
+          var img = document.getElementById(imageID), data = "action=aa_ig_ajax&view=save_img&url="+newURL;
           jQuery.ajax({
                 url: gf_aa_ajax_url, 
                 type: 'POST',
                 data: data, 
                 dataType: 'json',
-                success: function( response ) {
-                    if(response.code=='OK'){
+                success: function( response ){
+                    if(response.code==='OK'){
                         img.src = response.url;
                         jQuery('#input_'+gf_aa_settings['id']).val(response.url);
                     }
@@ -78,7 +44,7 @@ jQuery(document).ready(function(){
           });
          
       },
-      onError: function(errorObj) {
+      onError: function(errorObj){
             alert(errorObj.message);
       }
   });
@@ -125,11 +91,11 @@ function draw_aa_editor(){
   }
 }
 
-function launchEditor() {
+function launchEditor(){
     var form_id = gf_aa_settings['id'].split('_');
     jQuery('#gform_'+form_id[0]+' :submit').attr('id',gf_submit_btn_id);
     var id = 'gf_aa_img_preview';
-    var src = jQuery('#input_'+gf_aa_settings['id']).val()
+    var src = jQuery('#input_'+gf_aa_settings['id']).val();
     gf_featherEditor.launch({
         image: id,
         url: src
@@ -139,16 +105,16 @@ function launchEditor() {
 
 
 function gf_facebook_login(){
-    FB.login(function(response) {
-        if (response.status=="connected"){
+    FB.login(function(response){
+        if (response.status==="connected"){
           gf_aa_fb_access_token = response.authResponse.accessToken;
           FB.api('/'+FB.getUserID(), function(response){
             if(response){
               gf_aa_fbuser = response;
               show_fbimage_window();              
             }            
-          })            
-        } else {}
+          });            
+        }
     },{scope: 'user_photos,friends_photos'});
 }
 function show_fbimage_window(){
@@ -172,14 +138,14 @@ function show_fbimage_window(){
   });  
 }
 function gf_instagram_login(){
-  var data = "action=aa_ig_ajax&view=check_login"
+  var data = "action=aa_ig_ajax&view=check_login";
   jQuery.ajax({
       url: gf_aa_ajax_url, 
       type: 'POST',
       data: data, 
       dataType: 'json',
-      success: function( response ) {
-          if(response.code=='OK'){
+      success: function( response ){
+          if(response.code==='OK'){
               show_igimage_window();
           }else{
               var x = screen.width/2 - 700/2;
@@ -199,7 +165,7 @@ function get_fb_albums(){
         albums += "<div class='album item' onclick='get_fb_photos("+response.data[i].id+");'><div class='cover_image'><img src='https://graph.facebook.com/"+response.data[i].cover_photo+"/picture?type=album&access_token="+gf_aa_fb_access_token+"'/></div><div class='title'>"+response.data[i].name+"("+response.data[i].count+")</div></div>";
     }
     jQuery('#fb_img_container .box').html(albums);    
-  })
+  });
   jQuery('.go_to_album').hide();
 }
 
@@ -210,16 +176,16 @@ function get_fb_photos(album){
         albums += "<div class='photo item' onclick='set_aa_editor_photo(\""+response.data[i].source+"\");'><img src='"+response.data[i].picture+"'/></div>";
     }
     jQuery('#fb_img_container .box').html(albums);
-  })
+  });
   jQuery('.go_to_album').show();
 }
 
 
-function set_aa_editor_photo(image) {
+function set_aa_editor_photo(image){
   var gf_aa_settings_height = gf_aa_settings['preview_height'];
   var gf_aa_settings_width = gf_aa_settings['preview_width'];
-  if(gf_aa_settings_height !== '' && parseInt(preview_height)> 10) { gf_aa_settings_height = ' height="' + gf_aa_settings['preview_height'] + '"'; }
-  if(gf_aa_settings_width !== '') { gf_aa_settings_width = ' width="' + gf_aa_settings['preview_width'] + '"'; }
+  if(gf_aa_settings_height !== '' && parseInt(preview_height)> 10){ gf_aa_settings_height = ' height="' + gf_aa_settings['preview_height'] + '"'; }
+  if(gf_aa_settings_width !== ''){ gf_aa_settings_width = ' width="' + gf_aa_settings['preview_width'] + '"'; }
   jQuery('li#field_'+gf_aa_settings['id']+' #aa_preview_container').html('<img id="gf_aa_img_preview"' + gf_aa_settings_width + gf_aa_settings_height + ' src="'+image+'">');
   jQuery('li#field_'+gf_aa_settings['id']+' #input_'+gf_aa_settings['id']).val(image);
   jQuery('li#field_'+gf_aa_settings['id']+' #btn_gf_aa_edit').show();
@@ -233,14 +199,14 @@ function gf_fb_logout(){
                          "&access_token=" + gf_aa_fb_access_token;
 }
 function check_ig_loginstatus(){
-  var data = "action=aa_ig_ajax&view=check_login"
+  var data = "action=aa_ig_ajax&view=check_login";
   jQuery.ajax({
       url: gf_aa_ajax_url, 
       type: 'POST',
       data: data, 
       dataType: 'html',
-      success: function( response ) {
-          if(response.code=='OK'){
+      success: function( response ){
+          if(response.code==='OK'){
               return true;
           }else{
              return false;
@@ -255,7 +221,7 @@ function set_ig_auth_data(){
       type: 'POST',
       data: 'action=set&ig_user='+gf_aa_auth_data, 
       dataType: 'json',
-      success: function( response ) {
+      success: function( response ){
         window.opener.show_igimage_window();
         window.close();
       }						
@@ -269,7 +235,7 @@ function show_igimage_window(){
       type: 'POST',
       data: 'action=aa_ig_ajax&view=get_images', 
       dataType: 'html',
-      success: function( response ) {
+      success: function( response ){
         console.log(response);
           jQuery('#ig_img_container').append(response);
           jQuery.fancybox($container.html());  
@@ -284,8 +250,8 @@ function gf_ig_logout(){
       type: 'POST',
       data: 'action=del', 
       dataType: 'json',
-      success: function( response ) {
-        if(response.code='OK'){
+      success: function( response ){
+        if(response.code==='OK'){
           window.open(gf_aa_set_sesion_url+'ig_logout.php');
           jQuery.fancybox.close();          
         }
