@@ -1,19 +1,19 @@
 === Aviary Image Editor Add-on For Gravity Forms ===
-Tags: gravity forms, forms, gravity, form, editor, gravity form, photos, photo editor plugin, photo upload form, photo editor form, wp contact form, aviary editor, aviary
-Requires at least: 2.8
-Tested up to: 4.0
+Tags: gravity forms, forms, gravity, form, editor, gravity form, photos, photo editor plugin, photo upload form, photo editor form, wp contact form, aviary editor, aviary, adobe creative sdk
+Requires at least: 3.0
+Tested up to: 4.2
 Stable tag: trunk
 Contributors: Water's Edge Web Design, NetherWorks LLC
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q2P8VVQ2U54DY
 
-A plugin that integrates the awesome Aviary Photo / Image Editor with the Gravity Forms Plugin.
+A plugin that integrates the awesome Adobe Creative SDK (formerly Aviary) Photo / Image Editor with the Gravity Forms Plugin.
 
 == Description ==
 
 ### Allow your users to upload and edit photos before submitting them in your Gravity Forms. <strong>Now get photos from facebook and instagram too!</strong>
 
-#### Using the Aviary Editor API
-Before you can start using this great plugin, you'll need to get a developer api key from <a href="http://http://www.aviary.com/web-key" target="_blank">Get your api key here for <strong>free!</strong></a>. 
+#### Using the Adobe Creative SDK (Aviary) Editor API
+Before you can start using this great plugin, you'll need to get a developer api key from <a href="https://creativesdk.adobe.com" target="_blank">Get your api key here for <strong>free!</strong></a>. 
 
 
 #### Don't have Gravity Forms for your site?
@@ -44,6 +44,10 @@ This plugin is released under a GPL license.
 
 == Changelog ==
 
+= 2.2 =
+* Updated for compatiblity with the new "Adobe Creative SDK" editor.
+* Fixed the instagram container.
+* Removed some files that aren't needed any longer.
 = 2.1 =
 * Facebook & Instagram Album buttons do not render unless their api keys are added.
 * Updated to Aviary API V3
@@ -61,6 +65,8 @@ This plugin is released under a GPL license.
 * Launch!
 
 == Upgrade Notice ==
+= 2.2 =
+* This sets up compatibility with the new Adobe Creative API. While the old version will continue to work, it will not work with any of the old Aviary API Keys.
 = 2.1 =
 * This update addresses several issues that prevented the plugin from working on some sites. Keep an eye out for more changes to come.
 = 2.0 =

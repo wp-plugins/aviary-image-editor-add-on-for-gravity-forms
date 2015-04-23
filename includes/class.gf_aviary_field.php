@@ -143,7 +143,7 @@ class GFAviaryField {
         wp_enqueue_style( "gform_aviary_style", plugin_dir_url(__FILE__).'css/style.css');
         wp_enqueue_style( "fancybox", plugin_dir_url(__FILE__).'fancybox/jquery.fancybox-1.3.4.css');
         wp_enqueue_script( "jquery", plugin_dir_url(__FILE__).'js/jquery.js');
-        wp_enqueue_script( "aviary_script", plugin_dir_url(__FILE__).'js/feather.js');
+        wp_enqueue_script( "aviary_script", 'http://feather.aviary.com/imaging/v1/editor.js');
         wp_enqueue_script( "mousewheel", plugin_dir_url(__FILE__).'fancybox/jquery.mousewheel-3.0.4.pack.js');
         wp_enqueue_script( "fancybox", plugin_dir_url(__FILE__).'fancybox/jquery.fancybox-1.3.4.pack.js');
         echo $this->_gf_aa_script;

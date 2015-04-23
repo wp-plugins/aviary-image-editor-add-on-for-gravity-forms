@@ -61,7 +61,7 @@ function draw_aa_editor(){
   local_editor.find('form').append('<div id="ajax_waiting_message_div"><img src="'+gf_aa_settings['plugin_url']+'/imgs/loading.gif"><label id="ajax_waiting_message">Wait a second...</label></div></div>');
   local_editor.find('form').before('<div id="gf_file_upload_error"></div>');
   var facebook_editor = jQuery('<div id="facebook-upload"><div id="facebook-open" onclick="gf_facebook_login();"></div></div>');
-  var instagram_editor = jQuery('<div id="instagram-upload"><div onclick="gf_instagram_login();" id="instagram-open"></div></div');
+  var instagram_editor = jQuery('<div id="instagram-upload"><div onclick="gf_instagram_login();" id="instagram-open"></div></div>');
   
   // aa_editor.append(tab);
   aa_editor.append(local_editor);
