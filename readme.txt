@@ -44,6 +44,8 @@ This plugin is released under a GPL license.
 
 == Changelog ==
 
+= 2.2.1 =
+* Fixed problem with the plugin that is affected by servers without having the $_SERVER variable setup correctly.
 = 2.2 =
 * Updated for compatiblity with the new "Adobe Creative SDK" editor.
 * Fixed the instagram container.
@@ -65,6 +67,8 @@ This plugin is released under a GPL license.
 * Launch!
 
 == Upgrade Notice ==
+= 2.2.1
+* This patch provides a fallback method for locating wp-load.php when the $_SERVER variable isn't working do to misconfiguration in PHP.
 = 2.2 =
 * This sets up compatibility with the new Adobe Creative API. While the old version will continue to work, it will not work with any of the old Aviary API Keys.
 = 2.1 =

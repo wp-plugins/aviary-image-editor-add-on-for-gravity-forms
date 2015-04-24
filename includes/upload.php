@@ -1,6 +1,10 @@
 <?php 
-include_once ($_SERVER["DOCUMENT_ROOT"]."/wp-load.php");
-
+$filename = $_SERVER["DOCUMENT_ROOT"]."/wp-load.php";
+if (file_exists($filename)) {    
+    include_once($filename);
+} else {    
+    include_once("../../../../wp-load.php");
+}
 $image_file = $_FILES['gf_aa_file'];
 if($image_file['name']!=''){
      $max_file_size =  4*1024*1024;
