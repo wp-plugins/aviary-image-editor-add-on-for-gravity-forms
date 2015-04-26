@@ -1,8 +1,9 @@
 <?php 
+
 $filename = $_SERVER["DOCUMENT_ROOT"]."/wp-load.php";
-if (file_exists($filename)) {    
+if (file_exists($filename)) {
     include_once($filename);
-} else {    
+} else {
     include_once("../../../../wp-load.php");
 }
 $image_file = $_FILES['gf_aa_file'];
@@ -25,13 +26,23 @@ if($image_file['name']!=''){
        }
      }
      if(!$error_flag){
-      $uplad_dir = wp_upload_dir();
-      if(!is_dir($uplad_dir['basedir'].'/gform_aviary')){
-          mkdir($uplad_dir['basedir'].'/gform_aviary');
-      }
-      $file_name = $uplad_dir['basedir'].'/gform_aviary/'.$_POST['gf_aa_field_id'].'_'.$image_file['name'];
+      $wp_upload_dir = wp_upload_dir();	  	  
+         if($aa_options['upload_dir']) {		  
+             if(!is_dir($wp_upload_dir['basedir'].'/'.$aa_options['upload_dir'])){			  
+                 mkdir($wp_upload_dir['basedir'].'/'.$aa_options['upload_dir']);		  
+             }		  
+             $upload_dir = $wp_upload_dir['basedir'].'/'.$aa_options['upload_dir'].'/';
+             $upload_url = $wp_upload_dir['baseurl'].'/'.$aa_options['upload_dir'].'/';	  
+         } else {		  
+             if(!is_dir($wp_upload_dir['basedir'].'/gform_aviary')){			  
+                 mkdir($wp_upload_dir['basedir'].'/gform_aviary');		  
+             }		  
+             $upload_dir = $wp_upload_dir['basedir'].'/gform_aviary/';
+             $upload_url = $wp_upload_dir['baseurl'].'/gform_aviary/';	  
+         }
+	  $file_name = $upload_dir.$_POST['gf_aa_field_id'].'_'.$image_file['name'];
       if(move_uploaded_file($image_file['tmp_name'], $file_name)){
-        $file_url = $uplad_dir['baseurl'].'/gform_aviary/'.$_POST['gf_aa_field_id'].'_'.$image_file['name'];
+        $file_url = $upload_url.$_POST['gf_aa_field_id'].'_'.$image_file['name'];
       }
     }
  }

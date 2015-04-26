@@ -15,6 +15,10 @@ $options = get_option('gf_aa_options');
                     <tr valign="top">
                         <th scope="row"><?php _e('Avairy API Key', 'gravityforms');?></th>
                         <td><input type="text" name="gf_aa_options[api_key]" value="<?php echo $options['api_key'];?>" size="40"> (To get your api key simply <a href="http://www.aviary.com/web-key" target="_blank">register here</a> for free)</td>
+                    </tr>					
+                    <tr valign="top">                        
+                        <th scope="row"><?php _e('Custom Upload Directory', 'gravityforms');?></th> 
+                        <td><input type="text" name="gf_aa_options[upload_dir]" value="<?php echo $options['upload_dir'];?>" size="40"> Add a custom upload directory here. Or leave blank for default (uploads/gform_aviary).</td>                    
                     </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Editor Language', 'gravityforms');?></th>

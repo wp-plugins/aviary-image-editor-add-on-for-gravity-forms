@@ -21,29 +21,23 @@ class GFAviaryField {
         // Adds title to GF custom field
         add_filter( 'gform_field_type_title' , array(&$this,'wps_aviary_title') );
         // Adds the input area to the external side
-        add_action( "gform_field_input" , array(&$this,"wps_aviary_field_input"), 10, 5 );
+        add_action( 'gform_field_input' , array(&$this,'wps_aviary_field_input'), 10, 5 );
         // Now we execute some javascript technicalitites for the field to load correctly
-        add_action( "gform_editor_js", array(&$this,"wps_gform_editor_js") );
-        
+        add_action( 'gform_editor_js', array(&$this,'wps_gform_editor_js') );
         // Add a script to the display of the particular form only if aviary field is being used
         add_action( 'gform_enqueue_scripts' , array(&$this,'wps_gform_enqueue_scripts') , 10 , 2 );
-        
         add_action('wp_enqueue_scripts', array(&$this, 'gf_aa_scripts'),20);
-        
         // Add a custom class to the field li
-        add_action("gform_field_css_class", array(&$this,"custom_class"), 10, 3);
-        
+        add_action('gform_field_css_class', array(&$this,'custom_class'), 10, 3);
         add_action('wp_footer', array(&$this,'gf_aa_footer'));        
         //all instagram ajax
-        add_action("wp_ajax_aa_ig_ajax", array(&$this,'ig_ajax_request_handle'));
-        add_action("wp_ajax_nopriv_aa_ig_ajax",  array(&$this,'ig_ajax_request_handle'));
-        
+        add_action('wp_ajax_aa_ig_ajax', array(&$this,'ig_ajax_request_handle'));
+        add_action('wp_ajax_nopriv_aa_ig_ajax',  array(&$this,'ig_ajax_request_handle'));
         //entry-list
-        add_filter("gform_entries_field_value", array(&$this, "gf_aa_entries_field_value"),10,4);
+        add_filter('gform_entries_field_value', array(&$this, 'gf_aa_entries_field_value'),10,4);
         //entry-detail
-        add_filter("gform_entry_field_value", array(&$this, "gf_aa_entry_field_value"),10,4);
-        
-        add_filter("gform_merge_tag_filter", array(&$this, "gf_aa_merge_tag_filter"),10,5);
+        add_filter('gform_entry_field_value', array(&$this, 'gf_aa_entry_field_value'),10,4);
+        add_filter('gform_merge_tag_filter', array(&$this, 'gf_aa_merge_tag_filter'),10,5);
         
     }
     
@@ -82,7 +76,7 @@ class GFAviaryField {
             if(!IS_ADMIN && !empty($field["maxLength"]) && is_numeric($field["maxLength"]))
                 $max_chars = self::get_counter_script($form_id, $field_id, $field["maxLength"]);
 
-            $input_name = $form_id .'_' . $field["id"];
+            $input_name = $form_id .'_'. $field["id"];
             $tabindex = GFCommon::get_tabindex();
             $css = isset( $field['cssClass'] ) ? $field['cssClass'] : '';
             //return sprintf("<div id='input_%s' class='%s' $tabindex></div>", $form_id.'_'.$field["id"], $css );
@@ -194,29 +188,36 @@ class GFAviaryField {
     
     function ig_ajax_request_handle(){
       switch($_POST['view']){
-        case 'save_img':
-            $uplad_dir_array = wp_upload_dir();
-            $uplad_dir = $uplad_dir_array['basedir'].'/gform_aviary';
-            if(!is_dir($uplad_dir)){
-                mkdir($uplad_dir);
-            }
-            $extension = strtolower(end(explode('.', $_POST['url'])));
-            $file_name = time().'.'.$extension;
-            $file_path = $uplad_dir.'/'.$file_name;
-            file_put_contents($file_path, file_get_contents($_POST['url']));
-            echo json_encode(
-                array(
-                    'code' => 'OK',
-                    'url' => $uplad_dir_array['baseurl'].'/gform_aviary/'.$file_name
-                    )
+        case 'save_img': 
+          $upload_dir_array = wp_upload_dir(); 
+          $custom_dir = $this->_gf_aa_options['upload_dir'];
+          if($custom_dir) { 
+              $upload_dir = $upload_dir_array['basedir'].'/'.$custom_dir;
+              $upload_url = $upload_dir_array['baseurl'].'/'.$custom_dir;
+          } else { 
+              $upload_dir = $upload_dir_array['basedir'].'/gform_aviary';
+              $upload_url = $upload_dir_array['baseurl'].'/gform_aviary';
+          } 
+          if(!is_dir($upload_dir)) {
+              mkdir($upload_dir); 
+          } 
+          $extension = strtolower(end(explode('.', $_POST['url'])));
+          $file_name = time().'.'.$extension; 
+          $file_path = $upload_dir.'/'.$file_name;
+          file_put_contents($file_path, file_get_contents($_POST['url']));
+          echo json_encode(
+            array(
+                'code' => 'OK',
+                'url' => $upload_url.'/'.$file_name
+                )
             );
-            break;
+          break;
         case 'check_login':
           session_start();
           $data = json_decode($_SESSION['ig_user']);
           if(empty($data->user)){
             echo json_encode( array( 
-              'code' => 'faild'
+              'code' => 'failed'
             ) );
           }else{
             echo json_encode( array( 

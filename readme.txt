@@ -43,7 +43,9 @@ Get screenshots and support at <a href="http://netherworks.com/gform-aviary-addo
 This plugin is released under a GPL license.
 
 == Changelog ==
-
+= 2.3 =
+* Cleaned up the code a bit.
+* Added the ability to set a custom upload directory in Aviary Options.
 = 2.2.1 =
 * Fixed problem with the plugin that is affected by servers without having the $_SERVER variable setup correctly.
 = 2.2 =
@@ -67,6 +69,8 @@ This plugin is released under a GPL license.
 * Launch!
 
 == Upgrade Notice ==
+= 2.3
+* Cleaned up code making it more consistent and added the ability to set a custom upload directory per feature requests.
 = 2.2.1
 * This patch provides a fallback method for locating wp-load.php when the $_SERVER variable isn't working do to misconfiguration in PHP.
 = 2.2 =
