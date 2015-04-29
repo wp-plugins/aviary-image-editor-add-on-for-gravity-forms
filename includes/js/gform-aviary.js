@@ -1,99 +1,100 @@
-var gf_featherEditor = null;
-var gf_aa_settings;
-var gf_aa_fbuser;
-var gf_aa_fb_access_token;
-var gf_aa_ajax_url;
-var gf_aa_auth_data;
-var gf_submit_btn_id;
+(function(){
+    'use strict';
 
-jQuery(document).ready(function(){
-  if(gf_aa_auth_data && gf_aa_auth_data!==''){
-    set_ig_auth_data();
-    return;
-  }
-  if(gf_aa_settings){
-    draw_aa_editor();
-    jQuery('#gf_aa_file').on('change',function(){
-      jQuery('#ajax_waiting_message_div').show();
-      var form_id = gf_aa_settings['id'].split('_');
-      gf_submit_btn_id = jQuery('#gform_'+form_id[0]+' :submit').attr('id');
-      jQuery('#gform_'+form_id[0]+' :submit').attr('id','');
-      jQuery('#gf_aa_editor #local-upload form').submit();      
-    });
-
-    gf_featherEditor = new Aviary.Feather({
-      apiKey: gf_aa_settings['api_key'],
-      apiVersion: 3,
-      tools: 'all',
-      appendTo: '',
-      fileFormat: gf_aa_settings['file_format']!==''? gf_aa_settings['file_format'] : 'original',
-      language: gf_aa_settings['language']!==''? gf_aa_settings['language'] : 'en',
-      onSave: function(imageID, newURL){
-          var img = document.getElementById(imageID), data = "action=aa_ig_ajax&view=save_img&url="+newURL;
-          jQuery.ajax({
-                url: gf_aa_ajax_url, 
-                type: 'POST',
-                data: data, 
-                dataType: 'json',
-                success: function( response ){
-                    if(response.code==='OK'){
-                        img.src = response.url;
-                        jQuery('#input_'+gf_aa_settings['id']).val(response.url);
-                    }
-                }						
+    jQuery(document).ready(function($){
+        var  fieldId, formFieldId;
+        var  gf_featherEditor = new Aviary.Feather({
+              apiKey: aviarySettings.apiKey,
+              theme: aviarySettings.theme,
+              tools: 'all',
+              appendTo: '',
+              fileFormat: aviarySettings.fileFormat !== '' ? aviarySettings.fileFormat : 'original',
+              language: aviarySettings.language !=='' ? aviarySettings.language : 'en',
+              onSave: function(imageID, newURL){
+                  var img = imageID, data = "action=gform_aviary_ajax&view=save_image&url="+newURL;
+                  $.ajax({
+                        url: aviarySettings.ajaxUrl, 
+                        type: 'POST',
+                        data: data, 
+                        dataType: 'json',
+                        success: function( response ){
+                            $('#ajax_waiting_message_div' + formFieldId).hide();
+                            if(response.code==='OK'){
+                                $('#aviary_image' + formFieldId)
+                                    .attr('src', response.url)
+                                    .css({'height': aviarySettings.previewHeight, 'width': aviarySettings.previewWidth});
+                                $('#input' + formFieldId).val(response.url);
+                            }
+                        }						
+                  });
+              },
+              onError: function(errorObj){
+                    alert(errorObj.message);
+              }
           });
-         
-      },
-      onError: function(errorObj){
-            alert(errorObj.message);
-      }
-  });
-  }
- 
-  
-});
-function draw_aa_editor(){
-
-  var aa_editor = jQuery('<div id="gf_aa_editor"></div>');
-  var local_editor = jQuery('<div id="local-upload"><div id="tab_from_local"></div>');
-  local_editor.append('<form action="'+gf_aa_settings['plugin_url']+'upload.php" target="gf_aa_target_iframe" enctype="multipart/form-data" method="post"></form><iframe id="gf_aa_target_iframe" name="gf_aa_target_iframe"></iframe>');
-  local_editor.find('form').append('<input type="file" name="gf_aa_file" id="gf_aa_file"><input type="hidden" name="gf_aa_field_id" value="'+gf_aa_settings['id']+'">');
-  local_editor.find('form').append('<div id="ajax_waiting_message_div"><img src="'+gf_aa_settings['plugin_url']+'/imgs/loading.gif"><label id="ajax_waiting_message">Wait a second...</label></div></div>');
-  local_editor.find('form').before('<div id="gf_file_upload_error"></div>');
-  var facebook_editor = jQuery('<div id="facebook-upload"><div id="facebook-open" onclick="gf_facebook_login();"></div></div>');
-  var instagram_editor = jQuery('<div id="instagram-upload"><div onclick="gf_instagram_login();" id="instagram-open"></div></div>');
-  
-  // aa_editor.append(tab);
-  aa_editor.append(local_editor);
-  if(gf_aa_settings['fb_app_id']){
-  aa_editor.append(facebook_editor);
-  }
-  if(gf_aa_settings['ins_client_secret']){
-  aa_editor.append(instagram_editor);
-  }
-  aa_editor.append("<div id='aa_preview_container'></div><div id='btn_gf_aa_edit'><input type='image' onclick='launchEditor();return false;' src='"+gf_aa_settings['plugin_url']+"/imgs/edit-photo.png' value='Edit photo'/></div>");
-  aa_editor.append('<div style="display:none;" id="gf_aa_images"></div>');
-  if(!jQuery('#gf_aa_editor').size()){
-   jQuery('#field_'+gf_aa_settings['id']).append(aa_editor);   
-  }  
-  if(gf_aa_settings['preview_disable']){
-    jQuery('#aa_preview_container').hide();
-  }
-}
-
-function launchEditor(){
-    var form_id = gf_aa_settings['id'].split('_');
-    jQuery('#gform_'+form_id[0]+' :submit').attr('id',gf_submit_btn_id);
-    var id = 'gf_aa_img_preview';
-    var src = jQuery('#input_'+gf_aa_settings['id']).val();
-    gf_featherEditor.launch({
-        image: id,
-        url: src
+        if(aviarySettings){
+            $('.gform_aviary input[type=file]').on('change',function(event){
+                fieldId = $(this).attr('data-field-id');
+                formFieldId = $(this).attr('data-form-field');
+                $('#ajax_waiting_message_div' + formFieldId).show();
+                $('#aviary_preview_container' + formFieldId).show();
+                var imageId = 'gf_aviary_img_preview' + formFieldId;
+                var imageSrc = $('#gf_aviary_file' + formFieldId);
+                var data = new FormData();
+                    data.append('gf_aviary_file', $(this).prop('files')[0]);
+                $.ajax({
+                        url: aviarySettings.pluginUrl + 'upload.php', 
+                        type: 'POST',
+                        data: data, 
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function( data ){
+                            var response = $.parseJSON(data);
+                            $('#ajax_waiting_message_div' + formFieldId).hide();
+                            if(response['status']==='success'){
+                                $('#aviary_image' + formFieldId)
+                                    .attr('src', response.message)
+                                    .css({'maxHeight': aviarySettings.previewHeight, 'maxWidth': aviarySettings.previewWidth});
+                                $('#input' + formFieldId).val(response.message);
+                                launchEditor('aviary_image' + formFieldId, response.message);
+                            }
+                        }	
+                });
+            });
+        }
+        
+        function launchEditor(imageId, imageSrc){
+            gf_featherEditor.launch({
+                image: imageId,
+                url: imageSrc
+            });
+            return false;
+        }
+        $('.aviary_edit_btn input').on('click', function(e){
+            e.preventDefault();
+            var imgId = $(this).attr('data-image-id');
+            var imgSrc = $(this).attr('data-image-src');
+            var imgUrl = $(imgSrc).val();
+            launchEditor(imgId, imgUrl);   
+        });
+        $(window).on('load', function(){
+            $('.gform_aviary div ul li>input[type=hidden]').each(function(){
+            formFieldId = $(this).parent().find('.ginput_container input[type=file]').attr('data-form-field');               
+                if($(this).val()){
+                    $('#aviary_preview_container' + formFieldId).show();
+                    $('#btn_gf_aviary_edit' + formFieldId).hide();
+                    $('#aviary_image' + formFieldId)
+                        .attr('src', $(this).val())
+                        .css({'height': aviarySettings.previewHeight, 'width': aviarySettings.previewWidth});
+                }
+                if(aviarySettings.previewDisabled === true) {
+                    $('#aviary_preview_container' + formFieldId).hide();
+                }
+            });
+        });
     });
-    return false;
-}
-
-
+//old stuff needing to be refactored    
 function gf_facebook_login(){
     FB.login(function(response){
         if (response.status==="connected"){
@@ -145,6 +146,7 @@ function gf_instagram_login(){
       }						
   });   
 }
+    
 function get_fb_albums(){
   if(jQuery('#fancybox-content .fb_friends select option:selected').attr('profile_thunb')){
     jQuery('#fancybox-content .profile_thumb img').attr('src', jQuery('#fancybox-content .fb_friends select option:selected').attr('profile_thunb'));
@@ -248,4 +250,5 @@ function gf_ig_logout(){
       }						
   });
 }
-
+    
+}());

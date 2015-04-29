@@ -6,7 +6,7 @@ if (file_exists($filename)) {
 } else {
     include_once("../../../../wp-load.php");
 }
-$image_file = $_FILES['gf_aa_file'];
+$image_file = $_FILES['gf_aviary_file'];
 if($image_file['name']!=''){
      $max_file_size =  4*1024*1024;
      $file_size = intval($image_file['size']);
@@ -26,50 +26,18 @@ if($image_file['name']!=''){
        }
      }
      if(!$error_flag){
-      $wp_upload_dir = wp_upload_dir();	  	  
-         if($aa_options['upload_dir']) {		  
-             if(!is_dir($wp_upload_dir['basedir'].'/'.$aa_options['upload_dir'])){			  
-                 mkdir($wp_upload_dir['basedir'].'/'.$aa_options['upload_dir']);		  
-             }		  
-             $upload_dir = $wp_upload_dir['basedir'].'/'.$aa_options['upload_dir'].'/';
-             $upload_url = $wp_upload_dir['baseurl'].'/'.$aa_options['upload_dir'].'/';	  
-         } else {		  
-             if(!is_dir($wp_upload_dir['basedir'].'/gform_aviary')){			  
-                 mkdir($wp_upload_dir['basedir'].'/gform_aviary');		  
-             }		  
-             $upload_dir = $wp_upload_dir['basedir'].'/gform_aviary/';
-             $upload_url = $wp_upload_dir['baseurl'].'/gform_aviary/';	  
-         }
-	  $file_name = $upload_dir.$_POST['gf_aa_field_id'].'_'.$image_file['name'];
-      if(move_uploaded_file($image_file['tmp_name'], $file_name)){
-        $file_url = $upload_url.$_POST['gf_aa_field_id'].'_'.$image_file['name'];
-      }
+        $wp_upload_dir = wp_upload_dir();	  	  
+        if(!is_dir($wp_upload_dir['basedir'].'/gform_aviary')){			  
+             mkdir($wp_upload_dir['basedir'].'/gform_aviary');		  
+        }		  
+        $upload_dir = $wp_upload_dir['basedir'].'/gform_aviary/';
+        $upload_url = $wp_upload_dir['baseurl'].'/gform_aviary/';	
+        $file_name = $upload_dir.$_POST['gf_aviary_field_id'].'_'.$image_file['name'];
+        if(move_uploaded_file($image_file['tmp_name'], $file_name)){
+            $file_url = $upload_url.$_POST['gf_aviary_field_id'].'_'.$image_file['name'];
+        }
     }
+    $return_obj = array('status' => 'success', 'message' => $file_url);
+    echo json_encode($return_obj);
  }
-?>
-<script language="javascript">
- parent.jQuery('#ajax_waiting_message_div').hide();
- var gf_aa_settings_height = parent.gf_aa_settings['preview_height'];
- var gf_aa_settings_width = parent.gf_aa_settings['preview_width'];
- if(gf_aa_settings_height !== '') { gf_aa_settings_height = ' height="' + parent.gf_aa_settings['preview_height'] + '"'; }
- if(gf_aa_settings_width !== '') { gf_aa_settings_width = ' width="' + parent.gf_aa_settings['preview_width'] + '"'; }
-<?php
-if( $error_flag ){
-  echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #gf_file_upload_error').show();";
-  echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #btn_gf_aa_edit').hide();";
-  echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #gf_file_upload_error').html('".$msg."');";
-}else{
-    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #gf_file_upload_error').hide();";
-    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #btn_gf_aa_edit').show();";
-    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #aa_preview_container').html('<img id=\"gf_aa_img_preview\" '+ gf_aa_settings_width + gf_aa_settings_height + ' id=\"aa_preview_image\" src=\"".$file_url."\">');";
-    echo "parent.jQuery('li#field_".$_POST['gf_aa_field_id']." #input_".$_POST['gf_aa_field_id']."').val('".$file_url."');";
-    echo "parent.launchEditor();";
-    echo "parent.jQuery('.gform_button').removeAttr('disabled');";
-}
-
-?>
-
-</script>
-<?php
-exit;
 ?>

@@ -43,6 +43,12 @@ Get screenshots and support at <a href="http://netherworks.com/gform-aviary-addo
 This plugin is released under a GPL license.
 
 == Changelog ==
+= 3.0 (beta) =
+* Refactored a majority of the plugin code. It is now much cleaner, efficient, and optimized.
+* Added the ability to switch between light and dark editor theme.
+* You can now add multiple fields to a form and edit each uploaded image individually.
+* Image Preview and field value stay intact after validation errors occur.
+* Addressed other minor bugs/issues.
 = 2.3 =
 * Cleaned up the code a bit.
 * Added the ability to set a custom upload directory in Aviary Options.
@@ -69,6 +75,11 @@ This plugin is released under a GPL license.
 * Launch!
 
 == Upgrade Notice ==
+= 3.0 (Beta) = 
+* Do not install if you are using facebook and instagram features from previous versions and they are still working.
+* Make sure to revisit Aviary Options and add either px or % values to the end of your preview height and width values.
+* While there are some breaking changes, this new version solves a lot of various problems and limitations from before.
+* Please report any bugs or issues you are having in the support threads. 
 = 2.3
 * Cleaned up code making it more consistent and added the ability to set a custom upload directory per feature requests.
 = 2.2.1

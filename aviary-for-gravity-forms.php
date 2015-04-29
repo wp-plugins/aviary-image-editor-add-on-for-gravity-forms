@@ -3,7 +3,7 @@
 Plugin Name: Adobe Creative SDK / Aviary Editor Addon For Gravity Forms
 Plugin URI: http://netherworks.com/gform-aviary-addon
 Description: A free plugin that integrates the awesome Adobe Creative SDK (formerly Aviary) Photo / Image Editor with the Gravity Forms Plugin. 
-Version: 2.3
+Version: 3.0 (Beta)
 Author: Leon Kiley - NetherWorks, LLC
 Author URI: http://netherworks.com
 */
@@ -33,7 +33,7 @@ Author URI: http://netherworks.com
 if (!class_exists('GFAviaryEditor')) {
     class GFAviaryEditor {
         public function __construct() {
-          include 'includes/class.gf_aviary_field.php';
+          include 'includes/gform_aviary_field.php';
           new GFAviaryField();
           add_filter("gform_addon_navigation", array(&$this,"add_menu_item"));          
         }
@@ -43,7 +43,7 @@ if (!class_exists('GFAviaryEditor')) {
         }        
         function aviary_options_page(){
           include 'includes/options.php';
-        }        
+        }
     }    
 }
 add_action('init', 'gf_aviary_editor');

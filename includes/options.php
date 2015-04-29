@@ -20,6 +20,24 @@ $options = get_option('gf_aa_options');
                         <th scope="row"><?php _e('Custom Upload Directory', 'gravityforms');?></th> 
                         <td><input type="text" name="gf_aa_options[upload_dir]" value="<?php echo $options['upload_dir'];?>" size="40"> Add a custom upload directory here. Or leave blank for default (uploads/gform_aviary).</td>                    
                     </tr>
+                    <tr valign="top">                        
+                        <th scope="row"><?php _e('Editor Theme', 'gravityforms');?></th> 
+                        <td>
+                        <?php
+                            $themes = array(
+                              'dark' => 'Dark (Default)',
+                              'light' => 'Light'
+                            );
+
+                            echo "<select name='gf_aa_options[theme]'>";
+                            foreach ($themes as $key => $val) {
+                                $selected = ( $options['theme'] === $key ) ? 'selected = "selected"' : '';
+                                echo "<option value='$key' $selected>$val</option>";
+                            }
+                            echo "</select>";
+                          ?>
+                        </td>                    
+                    </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Editor Language', 'gravityforms');?></th>
                         <td>
@@ -85,13 +103,15 @@ $options = get_option('gf_aa_options');
                     </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Preview Width', 'gravityforms');?></th>
-                        <td><input type="text" name="gf_aa_options[preview_width]" value="<?php echo $options['preview_width'];?>" > px</td>
+                        <td><input type="text" name="gf_aa_options[preview_width]" value="<?php echo $options['preview_width'];?>" > add px/%</td>
                     </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Preview Height', 'gravityforms');?></th>
-                        <td><input type="text" name="gf_aa_options[preview_height]" value="<?php echo $options['preview_height'];?>" > px</td>
+                        <td><input type="text" name="gf_aa_options[preview_height]" value="<?php echo $options['preview_height'];?>" >add px/%</td>
                     </tr>
-                    <tr valign="top"><td colspan="2"></td></tr>
+                    <tr valign="top"><td colspan="2">
+                        <strong>IMPORTANT: This plugin has be heavily refactored since version 2.3 and the following options were not included in the refactoring process or tested. They may not work as expected or at all at this point. I'll be refactoring these soon.</strong>
+                        </td></tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Facebook Application ID');?></th>
                         <td><input type="text" name="gf_aa_options[fb_app_id]" value="<?php echo $options['fb_app_id'];?>" size="40"></td>
