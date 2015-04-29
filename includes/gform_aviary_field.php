@@ -39,6 +39,7 @@ class GFAviaryField {
         add_action('gform_field_css_class', array(&$this,'gf_custom_class'), 10, 3); // Add a custom class to the field li
         add_action('wp_enqueue_scripts', array(&$this, 'wps_enqueue_scripts'),20);
         add_action('wp_footer', array(&$this,'gf_aviary_footer'));
+		add_action('wp_ajax_gform_aviary_ajax', array(&$this,'gf_handle_ajax_request') );
         add_action('wp_ajax_nopriv_gform_aviary_ajax', array(&$this,'gf_handle_ajax_request') );
         //add_action('wp_ajax_aa_ig_ajax', array(&$this,'ig_ajax_request_handle')); //all instagram ajax
         //add_action('wp_ajax_nopriv_aa_ig_ajax',  array(&$this,'ig_ajax_request_handle'));

@@ -22,7 +22,7 @@
                             if(response.code==='OK'){
                                 $('#aviary_image' + formFieldId)
                                     .attr('src', response.url)
-                                    .css({'height': aviarySettings.previewHeight, 'width': aviarySettings.previewWidth});
+                                    .css({'maxHeight': aviarySettings.previewHeight, 'maxWidth': aviarySettings.previewWidth});
                                 $('#input' + formFieldId).val(response.url);
                             }
                         }						
@@ -86,7 +86,7 @@
                     $('#btn_gf_aviary_edit' + formFieldId).hide();
                     $('#aviary_image' + formFieldId)
                         .attr('src', $(this).val())
-                        .css({'height': aviarySettings.previewHeight, 'width': aviarySettings.previewWidth});
+                        .css({'maxHeight': aviarySettings.previewHeight, 'maxWidth': aviarySettings.previewWidth});
                 }
                 if(aviarySettings.previewDisabled === true) {
                     $('#aviary_preview_container' + formFieldId).hide();
