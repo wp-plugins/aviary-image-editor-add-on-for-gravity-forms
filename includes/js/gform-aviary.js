@@ -100,7 +100,7 @@
                 var imgId = $(this).attr('data-image-id');
                 var imgSrc = $(this).attr('data-image-src');
                 var imgUrl = $(imgSrc).val();
-                launchEditor(imgId, imgUrl);
+                return launchEditor(imgId, imgUrl);
             });
         }
         $(document).bind('gform_post_render', function (event, form_id, current_page) {
@@ -108,8 +108,6 @@
             initializeEditor();
             detectChanges();
         });
-        initializeEditor();
-        detectChanges();
     });
     // Old stuff that needs refactoring
     function gf_facebook_login() {
