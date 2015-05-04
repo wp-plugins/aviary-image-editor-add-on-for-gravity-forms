@@ -134,7 +134,7 @@ class GFAviaryField {
 
         return $input;
     }
-    function gf_add_field_template($field_content, $field, $value) {
+    function gf_add_field_template($field_content, $field) {
 
         if ( $field['type'] == 'aviary' ) {
             $tabindex = GFCommon::get_tabindex();
@@ -174,7 +174,7 @@ class GFAviaryField {
                     <li>
                         <ul id="aviary_preview_container' . $form_field_id . '" style="display: none;">
                             <li>
-                                <img id="aviary_image' . $form_field_id . '" src="' . $value . '"/>
+                                <img id="aviary_image' . $form_field_id . '" src="' . $field['value'] . '"/>
                             </li>
                             <li>
                                 <div id="btn_gf_aviary_edit' . $form_field_id . '" class="aviary_edit_btn"> 
