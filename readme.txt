@@ -43,6 +43,8 @@ Get screenshots and support at <a href="http://netherworks.com/gform-aviary-addo
 This plugin is released under a GPL license.
 
 == Changelog ==
+= 3.0 (beta r6) =
+* Resolved important security issue.
 = 3.0 (beta) =
 * Refactored a majority of the plugin code. It is now much cleaner, efficient, and optimized.
 * Added the ability to switch between light and dark editor theme.
@@ -75,6 +77,8 @@ This plugin is released under a GPL license.
 * Launch!
 
 == Upgrade Notice ==
+= 3.0 (beta r6) =
+* Resolved important security issue. Please update as soon as possible. 
 = 3.0 (Beta) = 
 * Do not install if you are using facebook and instagram features from previous versions and they are still working.
 * Make sure to revisit Aviary Options and add either px or % values to the end of your preview height and width values.
